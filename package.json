@@ -1,0 +1,26 @@
+{
+  "name": "simple-rpc",
+  "version": "1.0.0",
+  "description": "Learning RPC internals by building from scratch",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev:serializer": "tsx src/examples/test-serializer.ts",
+    "dev:transport": "tsx src/examples/test-transport.ts",
+    "build": "tsc",
+    "test": "jest",
+    "test:serializer": "jest --coverage tests/serializer.spec.ts",
+    "test:transport": "jest --coverage tests/transport.spec.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "zod": "^3.22.0"
+  }
+}
