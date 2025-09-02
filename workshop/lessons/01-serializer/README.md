@@ -3,6 +3,11 @@
 ## Why this lesson?
 Networks move bytes, not JavaScript objects. To call remote functions, we must encode requests and decode responses. This lesson builds the JSON "wire format" for our RPC messages.
 
+## Mental model
+- Request: `{ id, method, params }` → JSON string over the wire.
+- Response: `{ id, result }` or `{ id, error }` → exactly one.
+- `id` is the correlation key; do not lose it during round-trips.
+
 ## What you'll build
 - A small `RPCSerializer` that converts `RPCRequest`/`RPCResponse` objects to/from JSON strings
 - Helpers to construct request, success, and error messages safely
@@ -23,6 +28,12 @@ Implement strict JSON serialization/deserialization for RPC messages.
 - Responses include exactly one of `result` or `error`.
 - Deserialization rejects messages missing `id`.
 
+## Step-by-step (suggested)
+1. Implement `serialize`: wrap JSON.stringify with error message.
+2. Implement `deserialize`: parse, ensure `.id` exists, return typed.
+3. Implement `createRequest`, `createResponse`, `createErrorResponse`.
+4. Ensure response exclusivity through these helpers.
+
 ## Tests (Red)
 - Serializes a valid `RPCRequest` to string; JSON deep-equals original.
 - Deserializes a valid request string back to object.
@@ -30,6 +41,11 @@ Implement strict JSON serialization/deserialization for RPC messages.
 - `createResponse` includes only `result`.
 - `createErrorResponse` includes only `error`.
 - Round-trip preserves equality for nested params.
+
+## Pitfalls to avoid
+- Swallowing errors in JSON.parse/stringify.
+- Returning both `result` and `error` in the same response.
+- Dropping or mutating `id`.
 
 ## Acceptance (Green)
 All serializer tests pass; error messages are informative and stable.
@@ -40,6 +56,5 @@ Improve naming/structure without changing behavior.
 ## Learn
 Document trade-offs (JSON vs binary) in Architecture Decisions.
 
-## Dogfooding
-- Run `npm run dev:serializer` to visualize logs.
-- Run focused tests: `npm run test:serializer`.
+## Rubric
+- Correctness (tests pass), clarity (simple, readable helpers), safety (strict id check), discipline (exclusive result/error).

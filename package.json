@@ -9,7 +9,8 @@
     "build": "tsc",
     "test": "jest",
     "test:serializer": "jest --coverage tests/serializer.spec.ts",
-    "test:transport": "jest --coverage tests/transport.spec.ts"
+    "test:transport": "jest --coverage tests/transport.spec.ts",
+    "test:procedure": "jest --coverage tests/procedure.spec.ts"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
