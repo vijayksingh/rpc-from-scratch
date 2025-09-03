@@ -10,7 +10,9 @@
     "test": "jest",
     "test:serializer": "jest --coverage tests/serializer.spec.ts",
     "test:transport": "jest --coverage tests/transport.spec.ts",
-    "test:procedure": "jest --coverage tests/procedure.spec.ts"
+    "test:procedure": "jest --coverage tests/procedure.spec.ts",
+    "test:router": "jest --coverage tests/router.spec.ts",
+    "test:client": "jest --coverage tests/client.spec.ts"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
